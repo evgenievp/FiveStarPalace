@@ -13,6 +13,7 @@ public class SingleRoom implements GeneralRoom {
     private double cancelationFee;
     private double maximumOccupancy;
     private double discount;
+    private String discountCode;
 
 
     public SingleRoom(double price, String status, String number, double cancelationFee, double maximumOccupancy, double discount) {
@@ -40,7 +41,7 @@ public class SingleRoom implements GeneralRoom {
     }
 
     public double getPrice() {
-        return this.price;
+        return calculatePrice();
     }
 
     @Override
@@ -99,6 +100,17 @@ public class SingleRoom implements GeneralRoom {
     @Override
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public double calculatePrice() {
+        if (this.discountCode != null) {
+            this.price -= (this.price * this.discount);
+            return this.price;
+        }
+        else {
+            return this.price;
+        }
     }
 
 

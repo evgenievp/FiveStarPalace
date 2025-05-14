@@ -13,6 +13,27 @@ public class DoubleRoom implements GeneralRoom {
     private double cancelationFee;
     private double maximumOccupancy;
     private double discount;
+    private String discountCode;
+
+    public DoubleRoom(double price, String status, String number, double cancelationFee, double maximumOccupancy, double discount) {
+        if (price > 0) {
+            this.price = price;
+        }
+        else {
+            System.out.println("Error, cant set room price zero or less.");
+        }
+        if (!this.status.equals("Free") && (!this.status.equals("Booked") && (!this.status.equals("Maintenance")))) {
+            System.out.println("Error, cant set that type for Single Room.");
+        }
+        else {
+            this.status = status;
+        }
+        this.number = number;
+        this.amenites = new ArrayList<>();
+        this.cancelationFee = cancelationFee;
+        this.maximumOccupancy = maximumOccupancy;
+        this.discount = discount;
+    }
 
     @Override
     public String getType() {
@@ -21,7 +42,7 @@ public class DoubleRoom implements GeneralRoom {
 
     @Override
     public double getPrice() {
-        return this.price;
+        return calculatePrice();
     }
 
     @Override
@@ -86,6 +107,17 @@ public class DoubleRoom implements GeneralRoom {
         }
         else {
             this.discount = discount;
+        }
+    }
+
+    @Override
+    public double calculatePrice() {
+        if (this.discountCode != null) {
+            this.price = this.price - (this.price * this.discount);
+            return this.price;
+        }
+        else {
+            return this.price;
         }
     }
 }

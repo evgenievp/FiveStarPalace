@@ -5,6 +5,7 @@ import Hotel.rooms.DoubleRoom;
 import Hotel.rooms.SingleRoom;
 import Interfaces.GeneralRoom;
 import Interfaces.Hotel;
+import Users.CasualUser;
 import Users.User;
 import java.util.ArrayList;
 
@@ -24,16 +25,26 @@ public class FiveStarPalace implements Hotel {
     public void registerUser(User user) {
         this.users.add(user);
     }
+    private User searchUser(User user) {
+        for (var u : this.users) {
+            if (u.getUsername().equals(user.getUsername())) {
+                return user;
+            }
+        }
+        CasualUser u = new CasualUser("nobody", "nonePassword");
+        return u;
+    }
 
     @Override
     public boolean signIn(User user) {
-        for (var u : this.users) {
-            if (u.password == user.password && u.username == user.username) {
-                return true;
-            }
+        User foundUser = searchUser(user);
+        if (foundUser.getUsername().equals("nobody")) {
+            System.out.println("Cant sign in with that user.");
+            return false;
         }
-        return false;
-
+        else {
+            return true;
+        }
     }
 
     @Override

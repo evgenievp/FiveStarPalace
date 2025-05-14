@@ -14,6 +14,6 @@ public interface GeneralRoom {
     public void setStatus(String status);
     public void setCancelationFee(double fee);
     public void setDiscount(double discount);
-
+    public double calculatePrice();
 
 }
