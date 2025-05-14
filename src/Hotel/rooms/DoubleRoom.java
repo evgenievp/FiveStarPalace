@@ -1,11 +1,11 @@
-package Hotel;
+package Hotel.rooms;
 
 import Interfaces.GeneralRoom;
 
 import java.util.ArrayList;
 
-public class SingleRoom implements GeneralRoom {
-    private final String type = "Single";
+public class DoubleRoom implements GeneralRoom {
+    private final String type = "Double";
     private double price;
     private String status;
     private String number;
@@ -14,31 +14,12 @@ public class SingleRoom implements GeneralRoom {
     private double maximumOccupancy;
     private double discount;
 
-
-    public SingleRoom(double price, String status, String number, double cancelationFee, double maximumOccupancy, double discount) {
-        if (price > 0) {
-            this.price = price;
-        }
-        else {
-            System.out.println("Error, cant set room price zero or less.");
-        }
-        if (!this.status.equals("Free") && (!this.status.equals("Booked") && (!this.status.equals("Maintenance")))) {
-            System.out.println("Error, cant set that type for Single Room.");
-        }
-        else {
-            this.status = status;
-        }
-        this.number = number;
-        this.amenites = new ArrayList<>();
-        this.cancelationFee = cancelationFee;
-        this.maximumOccupancy = maximumOccupancy;
-        this.discount = discount;
-    }
-
+    @Override
     public String getType() {
         return this.type;
     }
 
+    @Override
     public double getPrice() {
         return this.price;
     }
@@ -68,6 +49,7 @@ public class SingleRoom implements GeneralRoom {
         return this.discount;
     }
 
+    @Override
     public void setPrice(double price) {
         if (price > this.price) {
             this.price = price;
@@ -77,6 +59,7 @@ public class SingleRoom implements GeneralRoom {
         }
     }
 
+    @Override
     public void setStatus(String status) {
         if (!status.equals("Free") && !status.contains("Booked") && !status.contains("Maintenance")) {
             System.out.println("Cant set that status");
@@ -88,13 +71,21 @@ public class SingleRoom implements GeneralRoom {
 
     @Override
     public void setCancelationFee(double fee) {
-
+        if (this.cancelationFee < fee) {
+            this.cancelationFee = fee;
+        }
+        else {
+            System.out.println("Cant set that fee.");
+        }
     }
 
     @Override
     public void setDiscount(double discount) {
-
+        if (this.discount < discount) {
+            System.out.println("Cant set that discount");
+        }
+        else {
+            this.discount = discount;
+        }
     }
-
-
 }
