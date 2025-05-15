@@ -1,41 +1,11 @@
-room_number,type,maximum_occupancy,amenities,price,discount,cancellation_fee,status
-D01,Deluxe,8,"TV, Balcony, Minibar",308.51,20,77.13,Booked
-D02,Deluxe,8,"Safe, Minibar",298.77,20,74.69,Free
-D03,Double,2,"TV, Air Conditioning, Minibar, Coffee Maker",126.15,15,31.54,Free
-D04,Suite,5,"Coffee Maker, Minibar, Safe, Sea View, TV",420.36,25,105.09,Maintenance
-D05,Deluxe,8,"Minibar, Balcony, Room Service, WiFi, Air Conditioning",311.42,20,77.86,Booked
-D06,Suite,5,"Minibar, Room Service, Safe, Sea View",404.67,25,101.17,Maintenance
-D07,Suite,5,"Balcony, Safe, TV, Coffee Maker, Room Service",375.63,25,93.91,Maintenance
-D08,Suite,5,"Balcony, Room Service, Minibar, WiFi, TV",437.12,25,109.28,Booked
-D09,Suite,5,"WiFi, Sea View, Coffee Maker",372.25,25,93.06,Maintenance
-D10,Deluxe,8,"Balcony, Sea View, WiFi, Coffee Maker",340.43,20,85.11,Free
-C01,Double,2,"Air Conditioning, Room Service, Sea View, Balcony, TV",94.06,15,23.52,Maintenance
-C02,Single,1,"Coffee Maker, WiFi",85.73,10,21.43,Free
-C03,Single,1,"Minibar, Balcony, Safe, Sea View, TV",72.71,10,18.18,Maintenance
-C04,Suite,5,"Safe, WiFi, Air Conditioning, Room Service, TV",358.63,25,89.66,Maintenance
-C05,Suite,5,"Balcony, WiFi, Minibar, Safe",426.79,25,106.7,Booked
-C06,Suite,5,"Safe, TV, Coffee Maker, Balcony, Room Service",407.32,25,101.83,Maintenance
-C07,Single,1,"WiFi, Safe, Balcony, Air Conditioning, Minibar",81.49,10,20.37,Free
-C08,Single,1,"Safe, Air Conditioning, Minibar, Coffee Maker, Room Service",64.1,10,16.02,Free
-C09,Double,2,"TV, WiFi, Safe",94.51,15,23.63,Free
-C10,Double,2,"TV, Balcony, Air Conditioning",100.96,15,25.24,Maintenance
-B01,Deluxe,8,"Minibar, WiFi, Safe, Air Conditioning",278.93,20,69.73,Booked
-B02,Deluxe,8,"Coffee Maker, Safe",317.07,20,79.27,Maintenance
-B03,Suite,5,"Minibar, Coffee Maker, Balcony",409.49,25,102.37,Maintenance
-B04,Double,2,"Minibar, WiFi, Air Conditioning, Safe, Room Service",95.77,15,23.94,Free
-B05,Double,2,"Sea View, Balcony, Minibar",120.54,15,30.14,Booked
-B06,Double,2,"Safe, Sea View, Air Conditioning, Balcony, Coffee Maker",108.36,15,27.09,Maintenance
-B07,Single,1,"TV, Sea View, Balcony, Safe",80.57,10,20.14,Booked
-B08,Suite,5,"Coffee Maker, Room Service, Sea View",363.1,25,90.78,Booked
-B09,Deluxe,8,"TV, WiFi, Air Conditioning, Balcony, Minibar",267.0,20,66.75,Booked
-B10,Suite,5,"Air Conditioning, TV",397.64,25,99.41,Free
-A01,Single,1,"Coffee Maker, TV, Room Service, Air Conditioning, Minibar",62.52,10,15.63,Booked
-A02,Double,2,"WiFi, Minibar, Sea View, Air Conditioning",90.04,15,22.51,Free
-A03,Double,2,"Air Conditioning, Safe, Balcony, Minibar, Sea View",122.58,15,30.64,Maintenance
-A04,Suite,5,"Safe, Balcony, Air Conditioning, WiFi",438.95,25,109.74,Maintenance
-A05,Suite,5,"Room Service, Sea View, Air Conditioning",416.8,25,104.2,Free
-A06,Suite,5,"Minibar, Room Service, Safe, Balcony",393.68,25,98.42,Booked
-A07,Suite,5,"Air Conditioning, TV, WiFi",397.09,25,99.27,Maintenance
-A08,Single,1,"Sea View, TV, Safe, Balcony, Coffee Maker",69.45,10,17.36,Free
-A09,Deluxe,8,"Coffee Maker, Balcony, Room Service",253.32,20,63.33,Free
-A10,Double,2,"Air Conditioning, Coffee Maker, Balcony, Room Service",116.99,15,29.25,Free
+room_number,type,maximum_occupancy,price,discount,cancellation_fee,status
+D01,Deluxe,8,308.51,20,77.13,Booked
+D02,Deluxe,8,298.77,20,74.69,Free
+D03,Double,2,126.15,15,31.54,Free
+D04,Suite,5,420.36,25,105.09,Maintenance
+D05,Deluxe,8,311.42,20,77.86,Booked
+D06,Suite,5,404.67,25,101.17,Maintenance
+D07,Suite,5,375.63,25,93.91,Maintenance
+D08,Suite,5,437.12,25,109.28,Booked
+D09,Suite,5,372.25,25,93.06,Maintenance
+D10,Deluxe,8,340.43,20,85.11,Free

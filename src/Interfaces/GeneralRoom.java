@@ -1,5 +1,7 @@
 package Interfaces;
 
+import Hotel.rooms.SuiteRoom;
+
 import java.util.ArrayList;
 
 public interface GeneralRoom {
@@ -15,5 +17,8 @@ public interface GeneralRoom {
     public void setCancelationFee(double fee);
     public void setDiscount(double discount);
     public double calculatePrice();
+    public void setAmenity(String amenity);
+    public String getRoomNumber();
+    public double bookRoomForDays(int days);
 
 }

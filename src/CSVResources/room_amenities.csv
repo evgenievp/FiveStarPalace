@@ -1,0 +1,41 @@
+room_number,amenity
+D01,TV
+D01,Balcony
+D01,Minibar
+D02,Safe
+D02,Minibar
+D03,TV
+D03,Air Conditioning
+D03,Minibar
+D03,Coffee Maker
+D04,Coffee Maker
+D04,Minibar
+D04,Safe
+D04,Sea View
+D04,TV
+D05,Minibar
+D05,Balcony
+D05,Room Service
+D05,WiFi
+D05,Air Conditioning
+D06,Minibar
+D06,Room Service
+D06,Safe
+D06,Sea View
+D07,Balcony
+D07,Safe
+D07,TV
+D07,Coffee Maker
+D07,Room Service
+D08,Balcony
+D08,Room Service
+D08,Minibar
+D08,WiFi
+D08,TV
+D09,WiFi
+D09,Sea View
+D09,Coffee Maker
+D10,Balcony
+D10,Sea View
+D10,WiFi
+D10,Coffee Maker

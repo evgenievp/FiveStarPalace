@@ -1,10 +1,11 @@
 package Users;
 
 import Interfaces.GeneralRoom;
+import Interfaces.User;
 import Receipts.BookReceipt;
 import java.util.ArrayList;
 
-public class AdminUser implements User{
+public class AdminUser implements User {
     private String username;
     private String userPassword;
     private double money;

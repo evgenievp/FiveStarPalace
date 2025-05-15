@@ -1,11 +1,12 @@
 package Users;
 
 import Interfaces.GeneralRoom;
+import Interfaces.User;
 import Receipts.BookReceipt;
 
 import java.util.ArrayList;
 
-public class CasualUser implements User{
+public class CasualUser implements User {
     private String username;
     private String userPassword;
     private double money;
@@ -71,7 +72,8 @@ public class CasualUser implements User{
         return false;
     }
 
-    private Object getPassword() {
+    @Override
+    public String getPassword() {
         return this.userPassword;
     }
 

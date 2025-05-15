@@ -1,6 +1,4 @@
-package Users;
-
-import Interfaces.GeneralRoom;
+package Interfaces;
 
 public interface User {
     String username = "";
@@ -10,4 +8,6 @@ public interface User {
     void cancelBook();
     boolean authenticate(String username, String password);
     String getUsername();
+
+    String getPassword();
 }
