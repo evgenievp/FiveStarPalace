@@ -51,9 +51,8 @@ public class FiveStarPalace implements Hotel {
     @Override
     public CasualUser signIn(User user) {
         User foundUser = searchUser(user);
-        if (foundUser.getUsername().equals("nobody")) {
-            System.out.println("Cant sign in with that user.");
-            return getUser(user.getUsername());
+        if (foundUser.getUsername().equals(user.getUsername()) && foundUser.getPassword().equals(user.getPassword())) {
+            return (CasualUser) foundUser;
         }
         else {
             CasualUser u = new CasualUser("nobody", "nonePassword");

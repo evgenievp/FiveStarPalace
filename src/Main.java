@@ -29,17 +29,20 @@ public class Main {
         boolean entered = false;
         while (true) {
             System.out.println("\n=== Five Star Palace Menu ===");
-            System.out.println("1. Регистрация на потребител");
+            if (!entered) {
+                System.out.println("1. Регистрация на потребител");
+            }
             if (!entered) {
                 System.out.println("2. Вход в системата");
             }
             if (entered) {
                 System.out.println("3. Изход от системата");
+                System.out.println("4. Показване на единични стаи");
+                System.out.println("5. Показване на двойни стаи");
+                System.out.println("6. Показване на делукс стаи");
+                System.out.println("7. Показване на суит стаи");
             }
-            System.out.println("4. Показване на единични стаи");
-            System.out.println("5. Показване на двойни стаи");
-            System.out.println("6. Показване на делукс стаи");
-            System.out.println("7. Показване на суит стаи");
+
             if (entered) {
                 System.out.println("0. Изход");
             }
@@ -56,8 +59,7 @@ public class Main {
                     if (hotel.getUser(username) != null) {
                         System.out.println("Този потребител вече съществува.");
                         break;
-                    }
-                    else {
+                    } else {
                         CasualUser newUser = new CasualUser(username, password);
                         hotel.registerUser(newUser);
                         System.out.println("Регистрацията е успешна!");
@@ -69,16 +71,23 @@ public class Main {
                     System.out.print("Парола: ");
                     String loginPass = scanner.nextLine();
                     CasualUser loggedUser = hotel.signIn(new CasualUser(loginUser, loginPass));
-                    if (!loggedUser.getUsername().equals("nobody")) {
-                        System.out.println("Успешен вход. Здравей, " + loggedUser.getUsername());
+                    if (!loggedUser.getUsername().equals(loggedUser)) {
+                        System.out.println("Успешен вход. Здравей, " + loginUser);
+                        entered = true;
                     } else {
-                        System.out.println("Грешен потребител или парола.");
+                        System.out.println("Грешен потребител и/или парола.");
                     }
                     break;
                 case 3:
-                    hotel.signOut();
-                    System.out.println("Изход от системата.");
-                    break;
+                    if (entered) {
+                        hotel.signOut();
+                        entered = false;
+                        System.out.println("Изход от системата.");
+                        break;
+                    } else {
+                        System.out.println("Не сте в системата.");
+                        break;
+                    }
                 case 4:
                     System.out.println("Единични стаи:");
                     for (SingleRoom room : hotel.gerSingleRooms()) {
@@ -103,7 +112,84 @@ public class Main {
                         System.out.println(room.getRoomNumber() + " | " + room.getStatus());
                     }
                     break;
+                case 10:
+                    if (entered) {
+                        System.out.println("Избери тип стая за резервация:");
+                        System.out.println("1. Единична");
+                        System.out.println("2. Двойна");
+                        System.out.println("3. Делукс");
+                        System.out.println("4. Суит");
 
+                        int roomChoice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        ArrayList<? extends GeneralRoom> availableRooms = new ArrayList<>();
+                        switch (roomChoice) {
+                            case 1:
+                                availableRooms = (ArrayList<? extends SingleRoom>) hotel.gerSingleRooms().stream()
+                                        .filter(r -> r.getStatus().equals("Free"))
+                                        .toList();
+                                break;
+                            case 2:
+                                availableRooms = (ArrayList<? extends DoubleRoom>) hotel.getDoubleRooms().stream()
+                                        .filter(r -> r.getStatus().equals("Free"))
+                                        .toList();
+                                break;
+                            case 3:
+                                availableRooms = (ArrayList<? extends DeluxeRoom>) hotel.getDeluxeRooms().stream()
+                                        .filter(r -> r.getStatus().equals("Free"))
+                                        .toList();
+                                break;
+                            case 4:
+                                availableRooms = (ArrayList<? extends SuiteRoom>) hotel.getSuiteRooms().stream()
+                                        .filter(r -> r.getStatus().equals("Free"))
+                                        .toList();
+                                break;
+                            default:
+                                System.out.println("Невалиден избор.");
+                                break;
+                        }
+
+                        if (availableRooms.isEmpty()) {
+                            System.out.println("Няма свободни стаи от този тип.");
+                            break;
+                        }
+
+                        System.out.println("Свободни стаи:");
+                        for (GeneralRoom r : availableRooms) {
+                            System.out.println("Номер: " + r.getRoomNumber() + " | Цена: " + r.getPrice());
+                        }
+
+                        System.out.print("Въведи номер на стаята за резервация: ");
+                        String roomNumber = scanner.nextLine();
+
+                        GeneralRoom selectedRoom = hotel.getRoom(roomNumber);
+
+                        if (selectedRoom == null || !selectedRoom.getStatus().equals("Free")) {
+                            System.out.println("Невалиден избор или стаята не е свободна.");
+                            break;
+                        }
+
+                        System.out.print("Колко дни ще останете? ");
+                        int days = scanner.nextInt();
+                        scanner.nextLine();
+
+                        CasualUser currentUser = hotel.getUser(selectedRoom.getRoomNumber()); // Важно: влезлият потребител
+                        if (currentUser.getUsername().equals("nobody")) {
+                            System.out.println("Не сте влезли в системата.");
+                            break;
+                        }
+
+                        double totalPrice = selectedRoom.bookRoomForDays(days);
+
+                        if (totalPrice == 0) {
+                            System.out.println("Резервацията не може да бъде направена.");
+                        } else {
+                            currentUser.book(selectedRoom);
+                            System.out.println("Успешно резервира стая " + selectedRoom.getRoomNumber() + " за " + days + " дни.");
+                        }
+                        break;
+                    }
                 case 0:
                     System.out.println("Излизане от програмата...");
                     return;
@@ -112,6 +198,7 @@ public class Main {
             }
         }
     }
+
 }
 
 
