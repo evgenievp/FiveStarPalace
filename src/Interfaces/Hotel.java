@@ -19,7 +19,7 @@ public interface Hotel {
 
     ArrayList<GeneralRoom> getRooms();
 
-    ArrayList<SingleRoom> gerSingleRooms();
+    ArrayList<SingleRoom> getSingleRooms();
 
     ArrayList<DoubleRoom> getDoubleRooms();
 

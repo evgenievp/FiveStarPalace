@@ -38,17 +38,15 @@ public class CasualUser implements User {
     }
 
     @Override
-    public void book(GeneralRoom room) {
+    public void book(GeneralRoom room, int days) {
         if (this.discountCode != null) {
             room.getPrice();
         }
-        if (this.money >= room.getPrice()) {
-            this.money -= room.getPrice();
-            room.setStatus("Booked");
+        if (this.money >= room.getPrice() * days) {
+            this.money -= room.getPrice() * days;
+            BookReceipt receipt = new BookReceipt(username, days, room.getPrice());
+            this.receipts.add(receipt);
             this.currentlyBooked = room;
-        }
-        else {
-            System.out.println("Book cant be done.");
         }
     }
 
@@ -57,10 +55,6 @@ public class CasualUser implements User {
         if (this.currentlyBooked != null && this.money >= this.currentlyBooked.getCancelationFee()) {
             this.money -= this.currentlyBooked.getCancelationFee();
             this.currentlyBooked =null;
-        }
-        else {
-            System.out.println("Cant cancel room booking");
-
         }
     }
 

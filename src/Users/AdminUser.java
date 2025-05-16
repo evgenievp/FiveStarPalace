@@ -37,9 +37,9 @@ public class AdminUser implements User {
     }
 
     @Override
-    public void book(GeneralRoom room) {
+    public void book(GeneralRoom room, int days) {
         if (this.money >= room.getPrice()) {
-            this.money -= room.getPrice();
+            this.money -= room.getPrice() * days;
             room.setStatus("Booked");
             this.currentlyBooked = room;
         }

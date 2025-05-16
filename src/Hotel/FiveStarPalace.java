@@ -87,7 +87,7 @@ public class FiveStarPalace implements Hotel {
     }
 
     @Override
-    public ArrayList<SingleRoom> gerSingleRooms() {
+    public ArrayList<SingleRoom> getSingleRooms() {
         ArrayList<SingleRoom> singleRooms = new ArrayList<>();
         this.rooms.stream()
                 .filter(room -> room instanceof SingleRoom)
