@@ -63,10 +63,14 @@ public class CasualUser implements User {
     }
 
     @Override
-    public void cancelBook() {
+    public boolean cancelBook() {
         if (this.currentlyBooked != null && this.money >= this.currentlyBooked.getCancelationFee()) {
             this.money -= this.currentlyBooked.getCancelationFee();
             this.currentlyBooked =null;
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -103,4 +107,7 @@ public class CasualUser implements User {
         this.discountCode = code;
     }
 
+    public GeneralRoom getRoomReservation() {
+        return this.currentlyBooked;
+    }
 }

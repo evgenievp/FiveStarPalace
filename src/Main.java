@@ -6,6 +6,7 @@ import Hotel.rooms.DoubleRoom;
 import Hotel.rooms.SingleRoom;
 import Hotel.rooms.SuiteRoom;
 import Interfaces.GeneralRoom;
+import Interfaces.User;
 import Users.CasualUser;
 import promotionCodeGen.PromotionCodeGenerator;
 
@@ -130,6 +131,7 @@ public class Main {
                         System.out.println("2. Двойна");
                         System.out.println("3. Делукс");
                         System.out.println("4. Суит");
+                        System.out.println("5. Отмяна на резервация.");
                         int roomChoice = Integer.parseInt(scanner.nextLine());
                         ArrayList<? extends GeneralRoom> availableRooms = new ArrayList<>();
                         switch (roomChoice) {
@@ -144,6 +146,21 @@ public class Main {
                                 break;
                             case 4:
                                 availableRooms = hotel.getSuiteRooms();
+                                break;
+                            case 5:
+                                System.out.println("Моля въведете потребителско име и парола: ");
+                                String user = scanner.nextLine();
+                                System.out.println("Моля въведете паролата си: ");
+                                String currentPassword = scanner.nextLine();
+                                User userProfile = hotel.getUser(user);
+                                if (userProfile.authenticate(user, currentPassword) && userProfile.getRoomReservation() != null)  {
+                                    if (userProfile.cancelBook()) {
+                                        System.out.println("Успешен отказ");
+                                    }
+                                    else {
+                                        System.out.println("Резервацията не може да бъде отменена.");
+                                    }
+                                }
                                 break;
                             default:
                                 System.out.println("Невалиден избор.");

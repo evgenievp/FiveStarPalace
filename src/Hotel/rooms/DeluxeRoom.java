@@ -86,7 +86,7 @@ public class DeluxeRoom implements GeneralRoom {
     @Override
     public void setStatus(String status) {
         if (!status.equals("Free") && !status.contains("Booked") && !status.contains("Maintenance")) {
-            System.out.println("Cant set that status");
+            System.out.println("не може да се сложи този статус.");
         }
         else {
             this.status = status;
@@ -99,14 +99,14 @@ public class DeluxeRoom implements GeneralRoom {
             this.cancelationFee = fee;
         }
         else {
-            System.out.println("Cant set that fee.");
+            System.out.println("Не може да се сложи тази такса");
         }
     }
 
     @Override
     public void setDiscount(double discount) {
         if (this.discount < discount) {
-            System.out.println("Cant set that discount");
+            System.out.println("Не може да се сложи тази отстъпка");
         }
         else {
             this.discount = discount;

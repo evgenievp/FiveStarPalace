@@ -58,13 +58,14 @@ public class AdminUser implements User {
     }
 
     @Override
-    public void cancelBook() {
+    public boolean cancelBook() {
         if (this.currentlyBooked != null && this.money >= this.currentlyBooked.getCancelationFee()) {
             this.money -= this.currentlyBooked.getCancelationFee();
             this.currentlyBooked =null;
+            return true;
         }
         else {
-            System.out.println("Cant cancel room booking");
+            return false;
         }
     }
 
@@ -87,5 +88,8 @@ public class AdminUser implements User {
     public void setCode(String code) {
         this.discountCode = code;
     }
-
+    @Override
+    public GeneralRoom getRoomReservation() {
+        return this.currentlyBooked;
+    }
 }

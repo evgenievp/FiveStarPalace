@@ -9,11 +9,12 @@ public interface User {
     String password = "";
     void changePassword(String oldPassword, String password);
     void book(GeneralRoom room, int days);
-    void cancelBook();
+    boolean cancelBook();
     boolean authenticate(String username, String password);
     String getUsername();
     String getPassword();
     String getDiscountCode();
     ArrayList<BookReceipt> getReceipts();
     public void setCode(String code);
+    public GeneralRoom getRoomReservation();
 }
