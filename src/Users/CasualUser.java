@@ -26,27 +26,39 @@ public class CasualUser implements User {
         if (this.userPassword.equals(oldPassword) && !password.equals(this.userPassword)) {
             if (password.length() >= 6 && password.length() <= 30) {
                 this.userPassword = password;
-                System.out.println("Password changed successfully");
+                System.out.println("Успешно променена парола");
             }
             else {
-                System.out.println("Cant set that password. It should be between 6 and 30 symbols.");
+                System.out.println("Паролата трябва да е между 6 и 30 символа.");
             }
         }
         else {
-            System.out.println("Password not match.");
+            System.out.println("Паролите не съвпадат");
         }
     }
 
     @Override
     public void book(GeneralRoom room, int days) {
         if (this.discountCode != null) {
-            room.getPrice();
-        }
-        if (this.money >= room.getPrice() * days) {
-            this.money -= room.getPrice() * days;
-            BookReceipt receipt = new BookReceipt(username, days, room.getPrice());
-            this.receipts.add(receipt);
-            this.currentlyBooked = room;
+            double price = room.getPrice(discountCode);
+            if (this.money >= price) {
+                this.currentlyBooked = room;
+                room.bookRoomForDays(days, this.discountCode);
+                this.money -= price;
+            }
+            else {
+                System.out.println("Недостатъчна наличност");
+            }
+        } else {
+            if (this.money >= room.getPrice(null) * days) {
+                this.money -= room.getPrice(null) * days;
+                BookReceipt receipt = new BookReceipt(username, days, room.getPrice(null));
+                this.receipts.add(receipt);
+                room.bookRoomForDays(days, this.discountCode);
+                this.currentlyBooked = room;
+            } else {
+                System.out.println("не може да се резирвира. Недостатъчна анличност.");
+            }
         }
     }
 
@@ -67,6 +79,12 @@ public class CasualUser implements User {
     }
 
     @Override
+    public String getDiscountCode() {
+        return this.discountCode;
+    }
+
+
+    @Override
     public String getPassword() {
         return this.userPassword;
     }
@@ -74,6 +92,15 @@ public class CasualUser implements User {
     @Override
     public String getUsername() {
         return this.username;
+    }
+
+    @Override
+    public ArrayList<BookReceipt> getReceipts() {
+        return this.receipts;
+    }
+
+    public void setCode(String code) {
+        this.discountCode = code;
     }
 
 }

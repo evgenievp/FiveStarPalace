@@ -21,13 +21,13 @@ public class DoubleRoom implements GeneralRoom {
             this.price = price;
         }
         else {
-            System.out.println("Error, cant set room price zero or less.");
+            System.out.println("Не може да се сложи нулева цена за стая.");
         }
         if (floor >= 1 && floor <= 4) {
             this.floor = floor;
         }
         if (!status.equals("Free") && (!status.equals("Booked") && (!status.equals("Maintenance")))) {
-            System.out.println("Error, cant set that type for Single Room.");
+            System.out.println("Не може да се сложи този статус за стаята");
         }
         else {
             this.status = status;
@@ -45,8 +45,8 @@ public class DoubleRoom implements GeneralRoom {
     }
 
     @Override
-    public double getPrice() {
-        return calculatePrice();
+    public double getPrice(String discountCode) {
+        return calculatePrice(discountCode);
     }
 
     @Override
@@ -80,14 +80,14 @@ public class DoubleRoom implements GeneralRoom {
             this.price = price;
         }
         else {
-            System.out.println("Cant set that price");
+            System.out.println("Не може да се сложи тази цена");
         }
     }
 
     @Override
     public void setStatus(String status) {
         if (!status.equals("Free") && !status.contains("Booked") && !status.contains("Maintenance")) {
-            System.out.println("Cant set that status");
+            System.out.println("Не може да се сложи този статус");
         }
         else {
             this.status = status;
@@ -100,14 +100,14 @@ public class DoubleRoom implements GeneralRoom {
             this.cancelationFee = fee;
         }
         else {
-            System.out.println("Cant set that fee.");
+            System.out.println("Не може да се сложи тази такса");
         }
     }
 
     @Override
     public void setDiscount(double discount) {
         if (this.discount < discount) {
-            System.out.println("Cant set that discount");
+            System.out.println("Не може да се сложи тази отстпъка");
         }
         else {
             this.discount = discount;
@@ -115,7 +115,7 @@ public class DoubleRoom implements GeneralRoom {
     }
 
     @Override
-    public double calculatePrice() {
+    public double calculatePrice(String discountCode) {
         if (this.discountCode != null) {
             this.price = this.price - (this.price * this.discount);
             return this.price;
@@ -135,10 +135,10 @@ public class DoubleRoom implements GeneralRoom {
         return this.number;
     }
     @Override
-    public double bookRoomForDays(int days) {
+    public double bookRoomForDays(int days, String discountCode) {
         if (this.status.equals("Free")) {
             this.status = "Booked";
-            return getPrice() * days;
+            return getPrice(discountCode) * days;
         } else {
             return 0;
         }

@@ -142,4 +142,8 @@ public class FiveStarPalace implements Hotel {
         return room;
     }
 
+    public ArrayList<User> getUsers() {
+        return this.users;
+    }
+
 }

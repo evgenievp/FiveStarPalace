@@ -38,14 +38,23 @@ public class AdminUser implements User {
 
     @Override
     public void book(GeneralRoom room, int days) {
-        if (this.money >= room.getPrice()) {
-            this.money -= room.getPrice() * days;
+        if (this.money >= room.getPrice(this.discountCode)) {
+            this.money -= room.getPrice(this.discountCode) * days;
             room.setStatus("Booked");
             this.currentlyBooked = room;
         }
         else {
             System.out.println("Book cant be done.");
         }
+    }
+    @Override
+    public String getDiscountCode() {
+        return this.discountCode;
+    }
+
+    @Override
+    public ArrayList<BookReceipt> getReceipts() {
+        return this.receipts;
     }
 
     @Override
@@ -74,6 +83,9 @@ public class AdminUser implements User {
             return true;
         }
         return false;
+    }
+    public void setCode(String code) {
+        this.discountCode = code;
     }
 
 }

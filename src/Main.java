@@ -7,8 +7,8 @@ import Hotel.rooms.SingleRoom;
 import Hotel.rooms.SuiteRoom;
 import Interfaces.GeneralRoom;
 import Users.CasualUser;
+import promotionCodeGen.PromotionCodeGenerator;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -130,7 +130,6 @@ public class Main {
                         System.out.println("2. Двойна");
                         System.out.println("3. Делукс");
                         System.out.println("4. Суит");
-
                         int roomChoice = Integer.parseInt(scanner.nextLine());
                         ArrayList<? extends GeneralRoom> availableRooms = new ArrayList<>();
                         switch (roomChoice) {
@@ -156,7 +155,7 @@ public class Main {
                         }
                         System.out.println("Свободни стаи:");
                         for (GeneralRoom r : availableRooms) {
-                            System.out.println("Номер: " + r.getRoomNumber() + " | Цена: " + r.getPrice());
+                            System.out.println("Номер: " + r.getRoomNumber() + " | Цена: " + r.getPrice(null));
                         }
                         System.out.print("Въведи номер на стаята за резервация: ");
                         String roomNumber = scanner.nextLine();
@@ -168,8 +167,11 @@ public class Main {
                         System.out.print("Колко дни ще останете? ");
                         int days = scanner.nextInt();
                         scanner.nextLine();
-                        CasualUser currentUser = hotel.getUser(selectedRoom.getRoomNumber()); // Важно: влезлият потребител
-                        double totalPrice = selectedRoom.bookRoomForDays(days);
+                        CasualUser currentUser = hotel.getUser(selectedRoom.getRoomNumber());
+                        PromotionCodeGenerator gen = new PromotionCodeGenerator(currentUser);
+                        gen.genCode();
+                        currentUser.setCode(gen.getCode());
+                        double totalPrice = selectedRoom.bookRoomForDays(days, currentUser.getDiscountCode());
                         if (totalPrice == 0) {
                             System.out.println("Резервацията не може да бъде направена.");
                         } else {

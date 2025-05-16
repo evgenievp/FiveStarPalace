@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface GeneralRoom {
     public String getType();
-    public double getPrice();
+    public double getPrice(String discountCode);
     public String getStatus();
     public double getCancelationFee();
     public ArrayList<String> getAmenities();
@@ -16,9 +16,9 @@ public interface GeneralRoom {
     public void setStatus(String status);
     public void setCancelationFee(double fee);
     public void setDiscount(double discount);
-    public double calculatePrice();
+    public double calculatePrice(String discountCode);
     public void setAmenity(String amenity);
     public String getRoomNumber();
-    public double bookRoomForDays(int days);
+    public double bookRoomForDays(int days, String discountCode);
 
 }

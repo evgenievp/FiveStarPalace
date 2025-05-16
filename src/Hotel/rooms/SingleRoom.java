@@ -44,8 +44,8 @@ public class SingleRoom implements GeneralRoom {
         return this.type;
     }
 
-    public double getPrice() {
-        return calculatePrice();
+    public double getPrice(String discountCode) {
+        return calculatePrice(discountCode);
     }
 
     @Override
@@ -107,9 +107,9 @@ public class SingleRoom implements GeneralRoom {
     }
 
     @Override
-    public double calculatePrice() {
-        if (this.discountCode != null) {
-            this.price -= (this.price * this.discount);
+    public double calculatePrice(String discountCode) {
+        if (discountCode != null) {
+            this.price = this.price - (this.price * this.discount);
             return this.price;
         }
         else {
@@ -125,11 +125,12 @@ public class SingleRoom implements GeneralRoom {
     public String getRoomNumber() {
         return this.number;
     }
+
     @Override
-    public double bookRoomForDays(int days) {
+    public double bookRoomForDays(int days, String discountCode) {
         if (this.status.equals("Free")) {
             this.status = "Booked";
-            return getPrice() * days;
+            return getPrice(discountCode) * days;
         } else {
             return 0;
         }

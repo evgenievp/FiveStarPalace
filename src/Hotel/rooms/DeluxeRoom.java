@@ -14,7 +14,6 @@ public class DeluxeRoom implements GeneralRoom {
     private double cancelationFee;
     private double maximumOccupancy;
     private double discount;
-    private String discountCode;
 
     public DeluxeRoom(double price, int floor, String status, String number, double cancelationFee, double maximumOccupancy, double discount) {
         if (price > 0) {
@@ -45,8 +44,8 @@ public class DeluxeRoom implements GeneralRoom {
     }
 
     @Override
-    public double getPrice() {
-        return calculatePrice();
+    public double getPrice(String discountCode) {
+        return calculatePrice(discountCode);
     }
 
     @Override
@@ -115,8 +114,8 @@ public class DeluxeRoom implements GeneralRoom {
     }
 
     @Override
-    public double calculatePrice() {
-        if (this.discountCode != null) {
+    public double calculatePrice(String discountCode) {
+        if (discountCode != null) {
             this.price = this.price - (this.price * this.discount);
             return this.price;
         }
@@ -136,12 +135,11 @@ public class DeluxeRoom implements GeneralRoom {
     }
 
     @Override
-    public double bookRoomForDays(int days) {
+    public double bookRoomForDays(int days, String discountCode) {
         if (this.status.equals("Free")) {
             this.status = "Booked";
-            return getPrice() * days;
-        }
-        else {
+            return getPrice(discountCode) * days;
+        } else {
             return 0;
         }
     }
